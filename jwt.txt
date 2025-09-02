@@ -1,0 +1,51 @@
+
+
+// Cookie with jwt shortlived + longlived
+
+// create a different secret key for access and refresh token
+// create access token and refresh token using user payload signed with jwt
+
+
+// login
+
+// init accesstoken and refresh token using user payload  
+// response in cookie using specific cookie path, ex. '/refresh'
+
+
+
+// Accessing authorize page
+
+// validation with cookie using headers, req from client
+// verify token using jwt verify
+
+
+
+// refresh routes
+
+// get the access token
+// verify with jwt to refreshSecret token
+// used error handling to check
+// used jwt verify payload as new payload for refreshing access and refresh token
+// set to cookie path specific path
+
+
+
+
+// logout
+// clear the cookie
+
+
+
+
+// login
+// profile
+// refresh
+// logout
+
+
+
+
+
+
+
+
