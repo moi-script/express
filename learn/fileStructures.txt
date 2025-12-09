@@ -1,0 +1,24 @@
+/my-express-app
+│
+├── /src
+│   ├── /config             # CONFIGURATION ("Set it and forget it")
+│   │   ├── db.js
+│   │   ├── compression.js  # The Zipper settings
+│   │   └── security.js     # The Bodyguard settings (Helmet)
+│   │
+│   ├── /middleware         # LOGIC (Runs on requests)
+│   │   ├── auth.js         # The GateKeeper
+│   │   ├── rateLimit.js    # The Bouncer
+│   │   ├── proxySetup.js   # The Traffic Cop
+│   │   └── /validators     # The Inspectors
+│   │       ├── authValidator.js
+│   │       └── userValidator.js
+│   │
+│   ├── /controllers        # HANDLERS (Final destination)
+│   │   ├── userController.js
+│   │   └── errorController.js # The Safety Net
+│   │
+│   └── app.js              # MAIN (Where you import all these)
+│
+├── package.json
+└── .env

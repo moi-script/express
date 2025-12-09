@@ -1,0 +1,7 @@
+// Proxy
+
+src/middleware/ or src/services/
+
+proxySetup.js
+apiGateway.js
+serviceProxies.js

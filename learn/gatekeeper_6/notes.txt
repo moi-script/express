@@ -1,0 +1,14 @@
+file naming list 
+
+
+authentication 
+
+
+src/middleware/
+
+auth.js (Most common)
+protect.js
+checkRole.js (Specific for Admin checks)
+verifyToken.js
+
+

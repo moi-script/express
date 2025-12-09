@@ -1,0 +1,8 @@
+
+--> Third party hero 
+
+corsOptions.js
+
+rateLimit.js (For the "Bouncer" strategy)
+
+helmetConfig.js

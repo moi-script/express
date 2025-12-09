@@ -1,0 +1,11 @@
+
+--> Error handling
+
+
+src/controllers/ or src/middleware/ Suggested Names:
+
+errorController.js (If it contains the logic for handling errors)
+
+errorHandler.js (If it's just the middleware function)
+
+For the Class: src/utils/AppError.js (The custom class definition)

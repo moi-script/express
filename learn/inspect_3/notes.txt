@@ -1,0 +1,7 @@
+src/middleware/validators/ or just src/validators/
+
+authValidator.js (Checking email/password format)
+userValidator.js (Checking profile updates)
+commonValidator.js (Shared rules like "ID must be a number")
+
+

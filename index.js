@@ -12,8 +12,6 @@ app.use(cookieParser());
 app.use(express.json());
 
 
-
-
 const jwtAccessToken = 'secretAccess';
 const jwtRefreshToken = 'secretRefresh';
 
