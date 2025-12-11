@@ -8,8 +8,8 @@
 <body>
 
     <form id="form">
-        <label for="name"></label>
-        <input type="text" name="name">
+        <label for="name">UserName</label>
+        <input type="text" name="username">
         <label for="login">Email</label>
         <input type="email" name="email">
         <input type="submit">
@@ -29,19 +29,20 @@
                     body : formData
                 });
 
-                const token = await res.json();
+                const data = await res.json();
+                const tokenString = data.token;
+
+                if (!tokenString) throw new Error("No token received");
 
                 await fetch('http://localhost:5555/authenticate', {
-                    method : "GET",
-
                     headers : {
                         'Content-Type' : 'application/json',
-                        'Authorization' : `Bearer ${token}`
+                        'Authorization' : `Bearer ${tokenString}`
                     }
                 });
             } catch(err) {
 
-                console.error(err)
+                console.error('There is an error', err)
             }
 
         })

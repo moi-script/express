@@ -3,14 +3,13 @@ import cors from 'cors';
 import helmet from 'helmet';
 import jwt from 'jsonwebtoken';
 import multer from 'multer';
+import chalk from 'chalk';
 const app = express();
 
 
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
-app.use(multer());
-
 
 const key = 'hello-123';
 const upload = multer();
@@ -20,19 +19,20 @@ const user = [
     {id : 1, username : "John Maldita", email : 'hello@gmail.com'}
 ]
 
-
-
-const validate = (req, res, next, error) => {
+const validate = (req, res, next) => {
     const { username, email } = req.body;
 
-    const userExist = user.find(person => person.username === username && person.email === email)
-    if(userExist) {
+    const person = user.find(person => person.username === username && person.email === email)
+    if(person) {
 
-        const token = jwt.sign({id : user.id, username : user.username }, key);
-        res.token = token;
-        next();
+        const token = jwt.sign({id : person.id, username : person.username }, key);
+        req.token = token;
+        return next();
     }
-    return next(error);
+
+    const error = new Error('User not found');
+    error.sendStatus = 401;
+    next(error);
 }
 
 const authErrorHandler = (err, req, res, next) => {
@@ -42,7 +42,7 @@ const authErrorHandler = (err, req, res, next) => {
 
     res.status(status).json({
         status : 'error',
-        message : 'There was something wrong in the authentication'
+        message : err.message || 'There was something wrong in the authentication'
     })
 }
 
@@ -59,19 +59,29 @@ const authenticateToken = (req, res, next) => {
         if(err) return res.sendStatus(403);
 
         req.user = user;
-        next(); // -> next to redirect();
+        console.log(chalk.green('Hehe boy :)'));
+
+        res.sendStatus(200, {
+            status : 'Accepted',
+            message : 'Goods na'
+        } )
+
+        // next(); // -> next to redirect();
     
     })
 }
-
-
+app.get('/authenticate', authenticateToken);
 
 app.post('/login', upload.none(),  validate, (req, res) => {
-    const { token } = res;
+    const { token } = req;
 
     res.json({ token: token });
 })
-
 app.post('/login', authErrorHandler);
 
-app.post('/authenticate', authenticateToken);
+app.listen(5555, () => console.log('running at localhost:5555'));
+
+
+
+
+
