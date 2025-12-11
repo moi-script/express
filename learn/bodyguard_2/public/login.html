@@ -1,52 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
 
-    <form id="form">
-        <label for="name">UserName</label>
-        <input type="text" name="username">
-        <label for="login">Email</label>
-        <input type="email" name="email">
-        <input type="submit">
-    </form>
+   <form action="http://localhost:5555/login" method="POST" enctype="multipart/form-data">
+    <label>UserName</label>
+    <input type="text" name="username">
+    <label>Email</label>
+    <input type="email" name="email">
+    <input type="submit">
+</form>
+
 
     <script>
-        const form = document.getElementById('form');
+        // const form = document.getElementById('form');
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
+        // form.addEventListener('submit', async (e) => {
 
-            const formData = new FormData(form);
+        //     const formData = new FormData(form);
 
-            try {
-                const res = await fetch('http://localhost:5555/login', {
-                    method : "POST",
-                    body : formData
-                });
+        //     const res = await fetch("http://localhost:5555/login", {
+        //         method: "POST",
+        //         body: formData,
+        //         credentials: "include",
+        //         redirect: "follow"
+        //     });
 
-                const data = await res.json();
-                const tokenString = data.token;
+        //     // If backend redirected, manually navigate
+        //     if (res.redirected) {
+        //         window.location.href = res.url;
+        //         return;
+        //     }
+        // });
 
-                if (!tokenString) throw new Error("No token received");
-
-                await fetch('http://localhost:5555/authenticate', {
-                    headers : {
-                        'Content-Type' : 'application/json',
-                        'Authorization' : `Bearer ${tokenString}`
-                    }
-                });
-            } catch(err) {
-
-                console.error('There is an error', err)
-            }
-
-        })
     </script>
-    
+
 </body>
+
 </html>
