@@ -29,7 +29,7 @@ function auth(req, res, next) {
 
     const auth = req.headers.authorization || "";
     const token = (auth.startsWith("Bearer ") ? auth.slice(7) : null);
-    console.log('Token after header :: ', token);
+    console.log('Token after header :: ', token);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
     if (!token) return res.status(401).json({ status: 'Unauthorized', message: 'Error Missing Token' });
 
     try {

@@ -91,7 +91,31 @@ app.post('/login', upload.none(), validate, (req, res) => {
     // const { token } = req;
     console.log('Logging in');
     res.redirect('/home');
+});
+
+
+app.post('/sign_in', (req, res) => {
+    const person = req.body;
+        const token = jwt.sign({ id: person.id, username: person.username }, key, { expiresIn: '1m' });
+        const refreshToken = jwt.sign({ id: person.id, username: person.username }, key, { expiresIn: '7d' });
+
+        res.cookie('accessToken', token, {
+            httpOnly : true,
+            maxAge : 15 * 60 * 1000
+        });
+
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly : true,
+            maxAge : 7 * 24 * 60 * 60 * 1000
+        });
+        
+        res.send('Logged in');
+
 })
+
+
+
+
 
 
 app.get('/home', initHome, (req, res) => {
