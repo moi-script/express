@@ -108,9 +108,29 @@ app.post('/sign_in', (req, res) => {
             httpOnly : true,
             maxAge : 7 * 24 * 60 * 60 * 1000
         });
-        
+
         res.send('Logged in');
 
+})
+
+
+app.get('refreshToken', async (req, res) => {
+    const refreshToken = req.cookies.refreshToken;
+
+    if(!refreshToken) return res.status(401).send('Not authenticated');
+
+    jwt.verify(refreshToken, "REFRESH_SECRET", (err, user) => {
+        if(err) return res.status(403).send('Token invalid');
+
+        const newAccess = jwt.sign({ username : user.username}, 'ACCESS_SECRET', { expiresIn: '7d' });
+
+        res.cookie('access_token', newAccess, {
+            httpOnly: true,
+            maxAge: 15 * 60 * 1000 // 15 minutes
+        });
+
+        res.send('Access token refreshed');
+    })
 })
 
 
