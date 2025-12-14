@@ -58,7 +58,6 @@ const authErrorHandler = (err, req, res, next) => {
     })
 }
 
-
 const authenticateToken = (req, res, next) => {
     try {
         const token = req.cookies.token;
@@ -113,8 +112,7 @@ app.post('/sign_in', (req, res) => {
 
 })
 
-
-app.get('refreshToken', async (req, res) => {
+app.get('/refreshToken', async (req, res) => {
     const refreshToken = req.cookies.refreshToken;
 
     if(!refreshToken) return res.status(401).send('Not authenticated');
