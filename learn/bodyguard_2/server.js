@@ -13,7 +13,7 @@ const app = express();
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
 const key = 'hello-123';
 const upload = multer();

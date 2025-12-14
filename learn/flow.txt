@@ -1,1 +1,1 @@
-Request → Transform → Inspect → Gatekeeper → Bouncers → Zipper → Controller → Response
+Request → Multer → TransformOrder → ValidateOrderInput → Inspect → Gatekeeper → Controller → Response

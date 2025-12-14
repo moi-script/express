@@ -1,6 +1,15 @@
 // authorization / authentication 
 
 
+
+// Authentication ->  identity verification
+
+
+// Email + password login
+// JWT verification
+// Session cookie check
+
+
 const requireAdmin = (req, res, next) => {
   // Imagine we check a header or a cookie here
   const isAdmin = req.get('X-Is-Admin') === 'true';
