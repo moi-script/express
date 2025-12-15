@@ -10,24 +10,20 @@
 // );
 
 
-
-
 // transform -->  npm install express-validator
 // Does this request meet the business rules  
 import { body, validationResult } from 'express-validator';
 
 
-
-
 // should be put first before sanitazion  
-const initValidatorRules = () => {
+export const initValidatorRules = () => {
     return {
         isEmail :  body('email').isEmail(),
         isPassLength : body('password').isLength({ min: 5 })
     }
 }
 
-const sanitized = (req, res, next) => {
+export const sanitized = (req, res, next) => {
     const errors = validationResult(req);
 
     if(!errors.isEmpty()){

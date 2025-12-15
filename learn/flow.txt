@@ -1,1 +1,1 @@
-Request → Multer → TransformOrder → ValidateOrderInput → Inspect → Gatekeeper → Controller → Response
+Request → Multer | Built in parser → TransformOrder → ValidateOrderInput → Inspect → Gatekeeper → Controller → Response

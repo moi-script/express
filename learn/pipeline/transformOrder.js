@@ -1,3 +1,17 @@
+// using multer
+
+// upload.single('avatar')  -> req.file
+// upload.array('photos', 12) -> req.files
+// upload.fields({name : field_name, maxCount : 1});
+
+
+
+// using builtin parser
+
+
+
+
+// use multer middle ware  first before transform config
 const transformOrder = (req, res, next) => {
   const { productId, quantity, notes } = req.body; // assume
 
@@ -12,5 +26,7 @@ const transformOrder = (req, res, next) => {
   // Optional: add timestamp for controller convenience
   req.body.createdAt = new Date();
 
-  next(); 
+  next();   
 }
+
+
